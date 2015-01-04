@@ -89,7 +89,7 @@ function ajaxForCoords() {
     locations = data.ride_loc
     setMarkers()
   }).fail(function(){
-    alert("error")
+    alert("Error")
   })
 }
 
