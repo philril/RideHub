@@ -1,0 +1,121 @@
+<head>
+ <!--  datepicker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
+<!-- timepicker -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/themes/redmond/jquery-ui.css" />
+
+  <link rel="stylesheet" type="text/css" href="/css/jquery.ptTimeSelect.css" />
+  <script type="text/javascript" src="/js/jquery.ptTimeSelect.js"></script>
+<!-- gmaps -->
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+
+<!-- jquery -->
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+</head>
+
+<% if @ride %>
+  <% @ride.errors.full_messages.each do |error| %>
+      <p style="color: red"><%= error %></p>
+  <% end %>
+<% end %>
+
+<body onload="initialize()">
+
+<div class="content_wrapper">
+
+  <div id="map"></div>
+
+  <div id="new_ride_form">
+
+    <p>Enter the address of your ride's meeting place to autocomplete form:</p>
+    <div id="locationField">
+      <input class="field" id="autocomplete" placeholder="Enter the address of your meeting place" onFocus="geolocate()" type="text"></input>
+
+    </div>
+
+    <form id="ride_form">
+      <p>Ride meeting location:</p>
+      <input type="text" class="field" id="street_number" disabled="true" placeholder="Street Number" name="street_number"></input>
+      <br>
+      <input class="field" id="route" disabled="true" placeholder="Street" name="route"></input>
+      <br>
+      <input class="field" id="locality" disabled="true" placeholder="City" name="locality"></input>
+      <br>
+      <input class="field" id="administrative_area_level_1" disabled="true" placeholder="State" name="state"></input>
+      <br>
+      <input class="field" id="postal_code"disabled="true" placeholder="Zip Code"  name="postal_code"></input>
+      <br>
+      <input class="field" id="country" disabled="true" placeholder="Country" name="country"></input>
+      <br>
+
+      <textarea style="width:97%;height:100px" placeholder="Enter more details on your ride meeting location here
+      (i.e. 'meet by the benches in front of the coffeeshop')" name="location_add_detail"></textarea>
+
+
+      <p>Ride info:</p>
+      <input type="text" class="field" placeholder="Ride Name" name="ride_name"></input>
+      <br>
+      <input type="text" id="datepicker" placeholder="Date" name="date">
+      <br>
+      <input type="text" id="timepicker" placeholder="Time" name="time">
+      <br>
+      <textarea style="width:97%;height:100px" placeholder="Enter more details on your ride here. What's the plan?" name="description"></textarea>
+      <br>
+<div id="left_two">
+      <p>Skill level:</p>
+      <select name="skill_level">
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+      <br>
+      <p>Ride Leader:</p>
+      <select name="rider_leader_id">
+        <% @all_users.each do |user| %>
+          <option value="<%= user.id %>">
+            <%= user.first_name %> <%= user.last_name %>
+          </option>
+        <% end %>
+      </select>
+      <br>
+</div>
+<div id="right_two">
+      <p>Expected Ride Time:</p>
+      <select name="estimated_ride_time">
+        <% i = 1 %>
+        <% while i <= 24 %>
+          <option value="<%= i %>">
+            <%= i %> hours
+          </option>
+          <% i += 1 %>
+        <% end %>
+      </select>
+
+      <br>
+
+      <p>Expected Distance:</p>
+      <select name="expected_dist">
+        <% i = 1 %>
+        <% while i <= 200 %>
+          <option value="<%= i %>">
+            <%= i %> miles
+          </option>
+          <% i += 1 %>
+        <% end %>
+      </select>
+</div>
+      <br>
+      <br>
+      <div style="text-align:center">
+      <input style="font-size:1.25em; margin:15px;"id="submit_button" class="slimField" type="submit" value="Submit"></input>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="/js/new_ride.js"></script>
+
+</body>

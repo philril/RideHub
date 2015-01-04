@@ -1,0 +1,85 @@
+<!-- <body onload="initialize()">
+ -->
+<div class="content_wrapper">
+  <div id="map"></div>
+
+  <div id="ride_container">
+    <h2 style="text-align:center; font-size:2.5em"><%= @ride.ride_name %></h2>
+    <div style="text-align:center;">
+        <a href="#">
+        <button style="font-size:1.15em; padding: 7px; border-radius: 10px; margin-bottom: 20px;" id="join" type="button">Join This Ride!</button>
+        </a>
+    </div>
+
+    <div class="side_by_side">
+        <p class="ride_detail">Date & Time</p>
+        <div class="bubble">
+        <p><%= Time.parse(@ride.date).strftime("%B %d, %Y") %></p>
+        <p><%= @ride.time %></p>
+        </div>
+    </div>
+    <div class="side_by_side">
+        <p class="ride_detail">Meet Location Address</p>
+        <div class="bubble">
+        <p><%= @ride.street_number %> <%= @ride.street_name %></p>
+        <p><%= @ride.city %>, <%= @ride.state %> <%= @ride.zip_code %> <%= @ride.country %></p>
+        </div>
+    </div>
+
+    <div style="clear:both">
+    <p class="ride_detail">Meet Location Details</p>
+    </div>
+    <div class="bubble">
+    <p><%= @ride.location_add_detail %></p>
+    </div>
+    <p class="ride_detail">Ride Description</p>
+    <div class="bubble">
+    <p><%= @ride.description %></p>
+    </div>
+    <div id="sidebar">
+    <p class="ride_detail">Ride Leader</p>
+    <div class="bubble">
+    <p><%= @leader_name.first_name %> <%= @leader_name.last_name %></p>
+    </div>
+    <p class="ride_detail">Skill Level</p>
+    <div class="bubble">
+    <p><%= @ride.skill_level %></p>
+    </div>
+
+    <p class="ride_detail">Expected Distance</p>
+    <div class="bubble">
+    <p><%= @ride.expected_dist %> miles</p>
+    </div>
+
+    <p class="ride_detail">Estimated Ride Time</p>
+    <div class="bubble">
+    <p><%= @ride.estimated_ride_time %> hour(s)</p>
+    </div>
+    </div>
+
+    <div id="attendees" >
+    <p class="ride_detail">Riders</p>
+    <div class="bubble" style="text-align:left">
+    <% if @riders.length != 0 %>
+        <% @riders.each do |rider| %>
+        <ul>
+            <li value=<%= rider.first_name %>_<%= rider.last_name %>><a href="/user/<%= rider.id %>"><%= rider.first_name %> <%= rider.last_name %></a></li>
+        </ul>
+        <% end %>
+    <% else %>
+        <ul>
+            <li id="none">
+            None yet!
+            </li>
+        </ul>
+    <% end %>
+    </div>
+    </div>
+
+    <div id="ride_lat" style="display: none;"><%= @ride_lat %></div>
+    <div id="ride_long" style="display: none;"><%= @ride_long %></div>
+    <div id="ride_id" style="display: none;"><%= @ride_id %></div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/js/ride.js"></script>

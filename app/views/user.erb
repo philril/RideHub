@@ -1,0 +1,19 @@
+<div class="content_wrapper">
+  <div class="center">
+    <div id="user_container">
+    <h1><%= @this_user.first_name %> <%= @this_user.last_name %></h1>
+    <h2><%= @this_user.city %>, <%= @this_user.state %></h2>
+    <br>
+    <h4><%= @this_user.first_name %>'s rides:</h4>
+    <ul>
+      <% @this_user.rides.each do |ride| %>
+        <li style="text-align:left" >
+          <a href="/ride/<%= ride.id %>"><%= ride.ride_name %></a>
+        </li>
+      <% end %>
+    </ul>
+
+
+    </div>
+  </div>
+<div>

@@ -1,0 +1,31 @@
+<div class="sign_up_container">
+
+<div class="center">
+
+  <h1 style="color:black">Sign In</h1>
+
+  <% if @error %>
+    <div class="errors"><%= @error %></div>
+  <% end %>
+
+
+  <form id="sign-in" method="post" action="/sessions">
+    <label class="label" for="email">Email</label>
+    <br>
+    <input type="email" name="email" placeholder="e.g., me@example.com" value="<%= @email %>"><br>
+
+    <label class="label" for="password">Password</label>
+    <br>
+    <input type="password" name="password" placeholder="6 or more characters">
+
+    <br>
+
+    <div class="submit"><input style="color:black; margin:15px" type="submit" value="Sign Up"></div>
+
+  </form>
+
+</div>
+
+</div>
+
+</div>

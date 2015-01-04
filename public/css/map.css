@@ -1,0 +1,286 @@
+html, body {
+  height: 100%;
+  font-size: 18px;
+  margin: 0;
+  background-image: url("/photos/mebike.png");
+  background-size: 100%;
+  background-position: center bottom;
+  background-attachment: fixed;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+#logo {
+  position:absolute;
+  height:60px;
+  left:10px;
+  font-size: 2.75em;
+  font-weight: bold;
+  color:white;
+}
+
+#logo span {
+  display: inline-block;
+  line-height: 60px;
+  box-sizing: border-box;
+}
+
+#sign_in_out {
+  position:absolute;
+  right:10px;
+}
+
+#map{
+  height:700px;
+  width:700px;
+  margin: 10px;
+  float:left;
+  display:inline-block;
+  border-radius: 10px;
+}
+
+#navbar {
+  margin: 0 auto;
+  height: 60px;
+  background-color: gray;
+  line-height: 60px;
+  vertical-align: center;
+}
+
+#navbar ul {
+  margin: 0 auto;
+  display: table;
+  text-align: center;
+}
+
+#navbar ul li {
+  display: table-cell;
+  width: 200px;
+  vertical-align: middle;
+  font-size: 1.25em
+}
+
+#navbar a {
+  color:white;
+  text-decoration: none
+}
+
+#new_ride_form {
+  margin:10px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid black;
+  width:400px;
+  height:680px;
+  padding:10px;
+  display:inline-block;
+  float:left;
+  overflow:scroll;
+}
+
+#form {
+  float:left;
+  display:inline-block;
+}
+
+#locationField, #controls {
+  position: relative;
+}
+
+#autocomplete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.label {
+  text-align: right;
+  font-weight: bold;
+  width: 100px;
+  color: #303030;
+}
+
+/*#address {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #d4d4d4;
+  width: 480px;
+  padding-right: 2px;
+}*/
+
+#address td {
+  font-size: 10pt;
+}
+
+.field {
+  width: 98%;
+}
+
+.slimField {
+  width: 80px;
+}
+
+.wideField {
+  width: 200px;
+}
+
+#locationField {
+  height: 20px;
+  margin-bottom: 2px;
+}
+
+.content_wrapper {
+  width: 1166px;
+  height: 719px;
+  margin:0 auto;
+}
+
+#all_rides {
+  width:400px;
+  height:700px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display:inline-block;
+  float:left;
+  margin: 10px;
+  overflow:scroll;
+  background-color: white
+}
+
+#all_rides ul li a {
+  color:white;
+  font-size: 1.3em;
+  text-decoration: none;
+}
+
+
+#all_rides ul li a:hover {
+  text-shadow: 2px 2px black
+}
+
+#all_rides ul p {
+  padding-left:10px;
+  text-align:center;
+}
+
+#all_rides ul {
+  font-weight:bold;
+  list-style-type: none;
+  padding-left:0;
+}
+
+#ride_container {
+  width:419px;
+  height:700px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin:10px;
+  padding:2px;
+  background-color: white;
+  display:inline-block;
+  float:left;
+  overflow:scroll;
+}
+
+.join {
+  font-size:1.15em;
+  padding: 7px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color:white;
+}
+
+.ride_detail {
+  font-weight: bold;
+  color:black;
+  background-color: gray;
+  color:white;
+  text-align: center;
+  font-size: 1.15em;
+  margin: 5px;
+  border-radius: 7px;
+    text-shadow: 2px 2px black
+}
+
+.center {
+  text-align: center;
+/*  color:white;
+*/}
+
+.side_by_side {
+  display:table-cell;
+  width:50%;
+  float:right;
+  background:white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#attendees {
+  float: left;
+  width:50%;
+  box-sizing: border-box;
+  display:table-cell;
+}
+
+#sidebar {
+  float: right;
+  width:50%;
+  box-sizing: border-box;
+  text-align: center;
+  display:table-cell;
+}
+
+#user_container {
+  color:black;
+  width:500px;
+  height:500px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin:10px;
+  padding:2px;
+  background-color: white;
+  display:inline-block;
+  overflow:scroll;
+}
+
+.bubble {
+/*  border:1px solid black;
+  border-radius: 10px;
+  box-shadow:1px 1px 20px 1px gray inset;*/
+  margin: 5px;
+  text-align: center;
+}
+
+#left_two {
+  float:left;
+  width:50%;
+  box-sizing: border-box;
+  text-align: center;
+  display:table-cell;
+}
+
+#right_two {
+  float:right;
+  width:50%;
+  box-sizing: border-box;
+  text-align: center;
+  display:table-cell;
+}
+
+.sign_up_container {
+/* height:395px;
+*/ width:250px;
+ background-color:white;
+ margin: 50px auto;
+ padding: 1px;
+ border-radius: 10px;
+}
+
+#about {
+  width:600px;
+  color:black;
+  background-color:white;
+  margin:70px auto;
+  padding:7px;
+  border-radius: 10px;
+}

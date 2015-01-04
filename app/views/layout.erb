@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Welcome to RideHub!</title>
+  <!--   google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/css/map.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!--google maps:-->
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+
+</head>
+<body>
+
+  <nav>
+    <div id="navbar">
+        <div id="logo">
+          <span><a href="/">RIDEHUB</a></span>
+        </div>
+      <% if current_user %>
+
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/new_ride">New Ride</a></li>
+        <li><a href="/about">About</a></li>
+
+      <div id="sign_in_out">
+        <form id="sign-out" action="/sessions/<%= current_user.id %>" method="post">
+          <input name="_method" type="hidden" value="delete" />
+          <input style="color:black" type="submit" value="Sign Out">
+        </form>
+      </div>
+
+</ul>
+
+      <% else %>
+
+      <ul>
+
+        <div id="sign_in_out">
+
+          <a href="/sessions/new">
+          <input style="color:black" type="submit" value="Sign in">
+          </a>
+
+          <a href="/users/new">
+          <input style="color:black" type="submit" value="Sign Up">
+          </a>
+<!--
+          <li><a href="/sessions/new">Sign In</a></li>
+          <li><a href="/users/new">Sign Up</a></li> -->
+        </div>
+      </ul>
+      <% end %>
+    </div>
+  </nav>
+
+  <%= yield %>
+</body>
+</html>
