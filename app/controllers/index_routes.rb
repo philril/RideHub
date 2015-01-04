@@ -14,9 +14,6 @@ get '/homeAjax' do
 
   content_type :json
   {ride_loc: @ride_location}.to_json
-
-  # TO PREVENT TIMEOUT 500 ERROR:
-  sleep 10
 end
 
 post '/join_ride' do

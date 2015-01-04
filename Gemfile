@@ -16,6 +16,9 @@ gem 'bcrypt'
 gem 'bcrypt-ruby'
 gem 'shotgun'
 
+# To prevent timeouts:
+gem 'resque', "~> 1.22.0"
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
