@@ -1,13 +1,4 @@
 var map;
-// var placeSearch, autocomplete;
-// var componentForm = {
-//   street_number: 'short_name',
-//   route: 'long_name',
-//   locality: 'long_name',
-//   administrative_area_level_1: 'short_name',
-//   country: 'long_name',
-//   postal_code: 'short_name'
-// };
 var geocoder;
 var pos;
 var locations;
@@ -15,7 +6,7 @@ var locations;
 
 function initialize() {
   var mapOptions = {
-    zoom: 10
+    zoom: 11
   };
 
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -40,45 +31,8 @@ function initialize() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
-
   ajaxForCoords()
-
-
-//  autocomplete = new google.maps.places.Autocomplete(
-//   (document.getElementById('autocomplete')),
-//   { types: ['geocode'] });
-//   google.maps.event.addListener(autocomplete, 'place_changed', function() {
-//     fillInAddress();
-//   });
-// }
-
-//GET ADDRESS (refactor and put into separate function. bind ajax to function?)
-// $('#ride_form').on("submit", function(event){
-//   event.preventDefault();
-//   var input = $(this).serializeArray();
-//   var arr = [];
-
-//   var counter = 0
-
-//   while (counter < input.length) {
-//     arr.push(input[counter]['value']);
-//     counter++;
-//   }
-//   var address = String(arr.join(" "));
-//   console.log("ADDRESS: " + address)
-//   //get coordinates is not working here. Do I need it here? Don't put marker on map right away. Do that when it's loaded up from the database:
-//   getCoordinates(address, function(coordinates){
-//     console.log("in get coordinates:" + coordinates)
-//     setMarker(coordinates)
-//   })
-
-  // var latLong = getCoordinates(address);
-  // console.log(latLong);
-  // console.log("latLong " + latLong);
-  // setMarker(latLong);
 }
-// )
-
 
 
 function ajaxForCoords() {
@@ -93,19 +47,8 @@ function ajaxForCoords() {
   })
 }
 
-
  function setMarkers() {
-
-  // [
-  //     ['Bondi Beach', -33.890542, 151.274856, 4],
-  //     ['Coogee Beach', -33.923036, 151.259052, 5],
-  //     ['Cronulla Beach', -34.028249, 151.157507, 3],
-  //     ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  //     ['Maroubra Beach', -33.950198, 151.259302, 1]
-  //   ];
-
-  var infowindow = new google.maps.InfoWindow();
-
+    var infowindow = new google.maps.InfoWindow();
     var marker, i;
 
     for (i = 0; i < locations.length; i++) {
@@ -121,70 +64,9 @@ function ajaxForCoords() {
           infowindow.open(map, marker);
         }
       })(marker, i));
-
-
-      // google.maps.event.addListener(infowindow, 'click', function(infowindow, i) {
-      //   window.location.href = location[i].url;  //changed from markers[i] to this[i]
-      // });
-
     }
   }
 //GET ADDRESS
-
-
-
-//GEOCODER
-function getCoordinates(input_address, callback) {
-  var geocoder = new google.maps.Geocoder();
-  var coordinates;
-  geocoder.geocode({'address':input_address}, function(results, status) {;
-    coords_obj = results[0].geometry.location;
-    coordinates = [coords_obj.k, coords_obj.D];
-    callback(coordinates);
-   })
-  }//)
-// };
-//GEOCODER
-
-function setMarker(coordinates) {
-
-  var myPosition = new google.maps.LatLng(coordinates[0],coordinates[1])
-
-  var markerOptions = {
-    position: myPosition,
-    map: map
-  };
-
-  var mapOptions = {
-    zoom:10,
-    center: pos
-  }
-
-  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-  var marker = new google.maps.Marker(markerOptions);
-  marker.setMap(map)
-}
-
-// function fillInAddress() {
-//   // Get the place details from the autocomplete object.
-//   var place = autocomplete.getPlace();
-
-//   for (var component in componentForm) {
-//     document.getElementById(component).value = '';
-//     document.getElementById(component).disabled = false;
-//   }
-
-//   // Get each component of the address from the place details
-//   // and fill the corresponding field on the form.
-//   for (var i = 0; i < place.address_components.length; i++) {
-//     var addressType = place.address_components[i].types[0];
-//     if (componentForm[addressType]) {
-//       var val = place.address_components[i][componentForm[addressType]];
-//       document.getElementById(addressType).value = val;
-//     }
-//   }
-// }
 
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
