@@ -1,6 +1,7 @@
 $( document ).ready(function() {
 
-  $('#join').on('click', function(){
+  $('#join').on('click', function(event){
+    event.preventDefault();
     var $id = parseInt($('#ride_id').html())
     $.ajax({
       type: 'post',
