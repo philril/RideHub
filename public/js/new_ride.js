@@ -69,8 +69,8 @@ $( document ).ready(function() {
           longitude: coordinateArray[1]
         }
       })
-      // .done(function(){
-      //   alert("Ride saved! View your ride on the home page.")
+      .done(function(){
+        alert("Ride saved! View your ride on the home page.")
       // }).fail(function(){
       //   alert("Error! Please try again.")
       // });

@@ -14,7 +14,7 @@
     <div class="side_by_side">
         <p class="ride_detail">Date & Time</p>
         <div class="bubble">
-        <p><%= Time.parse(@ride.date).strftime("%B %d, %Y") %></p>
+        <p><%= @ride.date %></p>
         <p><%= @ride.time %></p>
         </div>
     </div>
