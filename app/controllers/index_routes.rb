@@ -52,13 +52,16 @@ post '/new_ride' do
      latitude: params[:latitude].to_f,
      longitude: params[:longitude].to_f
     )
+  @ride.save!
 
-  if @ride.save
-    redirect '/'
-  else
-    @all_users = User.all
-    erb :new_ride
-  end
+  erb :index
+
+  # if @ride.save
+  #   redirect '/'
+  # else
+  #   @all_users = User.all
+  #   erb :new_ride
+  # end
 end
 
 get '/ride/:id' do
