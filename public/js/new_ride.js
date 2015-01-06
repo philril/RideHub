@@ -27,17 +27,25 @@ $('#ride_form').submit(function(event){
   var address = String(arr.join(" "));
 //end get address
 
-  var geocoder = new google.maps.Geocoder();
+  // var geocoder = new google.maps.Geocoder();
+  //   geocoder.geocode({'address':address}, function(results) {
+  //     coords_obj = results[0].geometry.location;
+  //     coordinates = [coords_obj.k, coords_obj.D];
+  //     console.log(coordinates)
+  //     // (ajax call within geocoder function:)
+  //     ajax()
+  //     })
 
-    geocoder.geocode({'address':address}, function(results) {
-      coords_obj = results[0].geometry.location;
-      coordinates = [coords_obj.k, coords_obj.D];
+  getTheCoords(address, function(coordinates){ajax()})
 
-      console.log(coordinates)
-      // (ajax call within geocoder function:)
-      ajax()
-
-      })
+    function getTheCoords(address, callback) {
+      var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address':address}, function(results) {
+          coords_obj = results[0].geometry.location;
+          coordinates = [coords_obj.k, coords_obj.D];
+          callback(coordinates);
+        })
+      }
 
 //end geocode address
   function ajax(){
@@ -66,7 +74,7 @@ $('#ride_form').submit(function(event){
     }).done(function(){
       alert("Ride Saved!")
     }).fail(function(){
-      alert("Error! Please try again!")
+      alert("Error! Please try again.")
     })
   }
 
