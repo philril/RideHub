@@ -68,11 +68,12 @@ $( document ).ready(function() {
           latitude: coordinateArray[0],
           longitude: coordinateArray[1]
         }
-      }).done(function(){
-        alert("Ride saved! View your ride on the home page.")
-      }).fail(function(){
-        alert("Error! Please try again.")
-      });
+      })
+      // .done(function(){
+      //   alert("Ride saved! View your ride on the home page.")
+      // }).fail(function(){
+      //   alert("Error! Please try again.")
+      // });
     }
 
 

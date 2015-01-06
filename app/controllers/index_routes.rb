@@ -55,9 +55,7 @@ post '/new_ride' do
   @ride.save
 
   #Can I put a redirect here, or does redirect not work for async calls?
-  user = User.find(session[:user_id])
-  @all_rides = Ride.all.reverse
-  erb :map
+  redirect '/'
 
   # if @ride.save
   #   redirect '/'
