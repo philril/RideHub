@@ -35,7 +35,7 @@ end
 post '/new_ride' do
   @ride = Ride.new(
      ride_name: params[:ride_name],
-     date: Time.parse(params[:date]).strftime("%B %-d, %Y"),
+     date: params[:date],
      time: params[:time],
      street_number: params[:street_number],
      street_name: params[:route],
@@ -54,10 +54,10 @@ post '/new_ride' do
     )
   @ride.save
 
-puts
-p params[:longitude]
-p params[:latitude]
-puts
+  #Can I put a redirect here, or does redirect not work for async calls?
+  user = User.find(session[:user_id])
+  @all_rides = Ride.all.reverse
+  erb :map
 
   # if @ride.save
   #   redirect '/'
@@ -69,9 +69,7 @@ end
 
 get '/ride/:id' do
   @ride = Ride.find(params[:id])
-
   @riders = Ride.find(params[:id]).users
-
   @leader_name = User.find(@ride.rider_leader_id)
   @ride_lat = Ride.find(params[:id]).latitude
   @ride_long = Ride.find(params[:id]).longitude

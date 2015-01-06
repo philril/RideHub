@@ -7,9 +7,11 @@ $( document ).ready(function() {
   $('#ride_form').submit(function(event){
     event.preventDefault();
     var coordinates;
-    //get address
     var input = $(this).serializeArray();
-    // console.log(input)
+    //test
+    var formData = $(this).serialize();
+    console.log(formData);
+    //test
     var arr = [];
     var counter = 0;
 
@@ -28,53 +30,54 @@ $( document ).ready(function() {
     //     // (ajax call within geocoder function:)
     //     ajax()
     //     })
-    function getTheCoords(addressString, callbackFunction, formStuff) {
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'address': addressString}, function(results) {
-        coords_obj = results[0].geometry.location;
-        coordinates = [coords_obj.k, coords_obj.D];
-        console.log("in get coords: "+coordinates);
-        callbackFunction(coordinates, formStuff);
-      });
-    }
+    //geocodeAndPostNewRide(address, postNewRide, input)
 
-    getTheCoords(address, ajax, input)
 
-    //end geocode address
-    function ajax(coordinateArray, formData){
-      console.log("in ajax")
-      console.log(coordinates)
+//check names
+
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': address}, function(results) {
+      coords_obj = results[0].geometry.location;
+      coordinates = [coords_obj.k, coords_obj.D];
+      console.log("in get coords: "+coordinates);
+      postNewRide(coordinates);
+    });
+
+
+    function postNewRide(coordinateArray){
+      console.log("in ajax: " + coordinates)
       $.ajax({
         type: 'post',
         url: '/new_ride',
         data: {
-          street_number: formData[0]['value'],
-          route: formData[1]['value'],
-          locality: formData[2]['value'],
-          state: formData[3]['value'],
-          postal_code: formData[4]['value'],
-          country: formData[5]['value'],
-          location_add_detail: formData[6]['value'],
-          ride_name: formData[7]['value'],
-          date: formData[8]['value'],
-          time: formData[9]['value'],
-          description: formData[10]['value'],
-          skill_level: formData[11]['value'],
-          rider_leader_id: formData[12]['value'],
-          estimated_ride_time: formData[13]['value'],
-          expected_dist: formData[14]['value'],
+          street_number: input[0]['value'],
+          route: input[1]['value'],
+          locality: input[2]['value'],
+          state: input[3]['value'],
+          postal_code: input[4]['value'],
+          country: input[5]['value'],
+          location_add_detail: input[6]['value'],
+          ride_name: input[7]['value'],
+          date: input[8]['value'],
+          time: input[9]['value'],
+          description: input[10]['value'],
+          skill_level: input[11]['value'],
+          rider_leader_id: input[12]['value'],
+          estimated_ride_time: input[13]['value'],
+          expected_dist: input[14]['value'],
           latitude: coordinateArray[0],
           longitude: coordinateArray[1]
         }
       }).done(function(){
-        alert("Ride saved!")
+        alert("Ride saved! View your ride on the home page.")
       }).fail(function(){
         alert("Error! Please try again.")
       });
     }
+
+
   });
 });
-
 
 var placeSearch, autocomplete;
 var componentForm = {
