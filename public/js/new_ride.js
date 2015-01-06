@@ -28,7 +28,7 @@ $( document ).ready(function() {
     //     // (ajax call within geocoder function:)
     //     ajax()
     //     })
-    function getTheCoords(addressString, formStuff, callbackFunction) {
+    function getTheCoords(addressString, callbackFunction, formStuff) {
       var geocoder = new google.maps.Geocoder();
       geocoder.geocode({'address': addressString}, function(results) {
         coords_obj = results[0].geometry.location;
