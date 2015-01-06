@@ -53,6 +53,7 @@ $('#ride_form').submit(function(event){
 //end geocode address
   function ajax(){
     console.log("in ajax")
+    console.log(coordinates)
     $.ajax({
       type: 'post',
       url: '/new_ride',
