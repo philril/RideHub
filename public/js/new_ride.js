@@ -68,17 +68,16 @@ $( document ).ready(function() {
           latitude: coordinateArray[0],
           longitude: coordinateArray[1]
         }
-      })
-      .done(function(){
+      }).done(function(){
         alert("Ride saved! View your ride on the home page.")
-      // }).fail(function(){
+      })
+      // .fail(function(){
       //   alert("Error! Please try again.")
       // });
-    }
 
-
-  });
+  };
 });
+}
 
 var placeSearch, autocomplete;
 var componentForm = {
