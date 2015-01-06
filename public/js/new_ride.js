@@ -37,9 +37,9 @@ $('#ride_form').submit(function(event){
   //     })
 
   getTheCoords(address, function(coordinates){
-    console.log("in get coords:"+coordinates);
-    ajax()})
-
+    console.log("in get coords: "+coordinates);
+    ajax()
+  })
 
     function getTheCoords(address, callback) {
       var geocoder = new google.maps.Geocoder();
@@ -52,6 +52,7 @@ $('#ride_form').submit(function(event){
 
 //end geocode address
   function ajax(){
+    console.log("in ajax")
     $.ajax({
       type: 'post',
       url: '/new_ride',
