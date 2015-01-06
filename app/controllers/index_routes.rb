@@ -52,6 +52,7 @@ post '/new_ride' do
      latitude: params[:latitude].to_f,
      longitude: params[:longitude].to_f
     )
+  @ride.save
 
 puts
 p params[:longitude]
