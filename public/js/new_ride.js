@@ -77,7 +77,7 @@ $('#ride_form').submit(function(event){
         longitude: coordinates[1]
       }
     }).done(function(){
-      alert("Ride Saved!")
+      alert("Ride saved!")
     }).fail(function(){
       alert("Error! Please try again.")
     })

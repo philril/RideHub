@@ -53,9 +53,10 @@ post '/new_ride' do
      longitude: params[:longitude].to_f
     )
 
-  if @ride.save
-    p "Yeah"
-  end
+puts
+p params[:longitude]
+p params[:latitude]
+puts
 
   # if @ride.save
   #   redirect '/'
