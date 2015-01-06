@@ -65,6 +65,8 @@ $('#ride_form').submit(function(event){
       }
     }).done(function(){
       alert("Ride Saved!")
+    }).failure(function(){
+      alert("Error! Please try again!")
     })
   }
 

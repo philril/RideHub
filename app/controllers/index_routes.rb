@@ -52,10 +52,7 @@ post '/new_ride' do
      latitude: params[:latitude].to_f,
      longitude: params[:longitude].to_f
     )
-  @ride.save
-
-  # @all_rides = Ride.all.reverse
-  # erb :map
+  @ride.save!
 
   # if @ride.save
   #   redirect '/'
