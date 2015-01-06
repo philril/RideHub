@@ -64,7 +64,7 @@ $('#ride_form').submit(function(event){
         longitude: coordinates[1]
       }
     }).done(function(){
-      console.log("Ajax success!")
+      alert("Ride Saved!")
     })
   }
 

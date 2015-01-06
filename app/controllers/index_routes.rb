@@ -54,7 +54,10 @@ post '/new_ride' do
     )
   @ride.save!
 
-  erb :index
+  p "YEAH" if @ride.save!
+
+  @all_rides = Ride.all.reverse
+  erb :map
 
   # if @ride.save
   #   redirect '/'
