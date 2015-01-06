@@ -11,6 +11,7 @@ $( document ).ready(function() {
 
       if ($('#attendees').find('li[value='+response['first_name'] + "_" + response['last_name']+']').length > 0)
         {
+          $('#join').on('click', function(event){event.preventDefault()})
           $('#join').text("You've joined this ride!")
           alert("You've already joined this ride!")
       } else {
