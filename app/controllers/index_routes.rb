@@ -54,8 +54,6 @@ post '/new_ride' do
     )
   @ride.save!
 
-  p "YEAH" if @ride.save!
-
   @all_rides = Ride.all.reverse
   erb :map
 
