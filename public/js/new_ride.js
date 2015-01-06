@@ -75,9 +75,9 @@ $( document ).ready(function() {
       //   alert("Error! Please try again.")
       // });
 
-  };
+    };
+  });
 });
-}
 
 var placeSearch, autocomplete;
 var componentForm = {
