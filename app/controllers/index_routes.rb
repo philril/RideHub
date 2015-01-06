@@ -18,7 +18,7 @@ end
 
 post '/join_ride' do
 
-  unless Ride.find(params[:ride_id]).users.include?(session[:user_id])
+  unless Ride.find(params[:ride_id]).users.include?(User.find(session[:user_id]))
 
     Ride.find(params[:ride_id]).users << User.find(session[:user_id])
     @current_user = User.find(session[:user_id])

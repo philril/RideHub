@@ -44,6 +44,7 @@ html, body {
   background-color: gray;
   line-height: 60px;
   vertical-align: center;
+  text-shadow: 2px 2px black;
 }
 
 #navbar ul {
