@@ -69,7 +69,7 @@ $( document ).ready(function() {
           longitude: coordinateArray[1]
         }
       }).done(function(){
-        alert("Ride saved! View your ride on the home page.")
+        window.location = '/'
       })
       // .fail(function(){
       //   alert("Error! Please try again.")
