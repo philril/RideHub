@@ -21,7 +21,11 @@ $( document ).ready(function() {
             $('#none').replaceWith("<li value="+response['first_name'] + "_" + response['last_name']+"><a href='/user/"+response['id']+"''>" +response['first_name'] + " " + response['last_name']+"</a></li>")
             $('#join').on('click', function(event){event.preventDefault()})
             $('#join').text("You've joined this ride!")
-          } else {
+          }
+          // else
+
+            else if response != undefined || "undefined"
+           {
             $('#attendees:last').append("<ul><li value="+response['first_name'] + "_" + response['last_name']+"><a href='/user/"+response['id']+"''>" +response['first_name'] + " " + response['last_name']+"</a></li></ul>")
             $('#join').on('click', function(event){event.preventDefault()})
             $('#join').text("You've joined this ride!")
