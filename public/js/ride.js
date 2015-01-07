@@ -8,32 +8,19 @@ $( document ).ready(function() {
       url: '/join_ride',
       data: {ride_id: $id},
     }).done(function(response){
-      // If user is already joined, raise alert.
+
       if ($('#attendees').find('li[value='+response['first_name'] + "_" + response['last_name']+']').length > 0)
         {
           $('#join').on('click', function(event){event.preventDefault()})
           $('#join').text("You've joined this ride!")
           alert("You've already joined this ride!")
-      } else {
-        // If says "none yet," replace "none yet" with name
+      } else if (response !== undefined || "undefined") {
         if ($('#none').length > 0)
           {
             $('#none').replaceWith("<li value="+response['first_name'] + "_" + response['last_name']+"><a href='/user/"+response['id']+"''>" +response['first_name'] + " " + response['last_name']+"</a></li>")
             $('#join').on('click', function(event){event.preventDefault()})
             $('#join').text("You've joined this ride!")
-          }
-          // else
-
-          console.log(response)
-        //If user is already in database, don't add them
-        else if (response == undefined)
-          {
-            console.log("in else if")
-            $('#join').on('click', function(event){event.preventDefault()})
-            $('#join').text("You've joined this ride!")
-          }
-        else
-          {
+          } else {
             $('#attendees:last').append("<ul><li value="+response['first_name'] + "_" + response['last_name']+"><a href='/user/"+response['id']+"''>" +response['first_name'] + " " + response['last_name']+"</a></li></ul>")
             $('#join').on('click', function(event){event.preventDefault()})
             $('#join').text("You've joined this ride!")
