@@ -24,8 +24,13 @@ $( document ).ready(function() {
           }
           // else
 
-            else if response != undefined || "undefined"
-           {
+        else if (response = undefined || "undefined")
+          {
+            $('#join').on('click', function(event){event.preventDefault()})
+            $('#join').text("You've joined this ride!")
+          }
+        else
+          {
             $('#attendees:last').append("<ul><li value="+response['first_name'] + "_" + response['last_name']+"><a href='/user/"+response['id']+"''>" +response['first_name'] + " " + response['last_name']+"</a></li></ul>")
             $('#join').on('click', function(event){event.preventDefault()})
             $('#join').text("You've joined this ride!")
