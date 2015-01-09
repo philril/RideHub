@@ -14,8 +14,8 @@
     <div class="side_by_side">
         <p class="ride_detail">Date & Time</p>
         <div class="bubble">
-        <p><%= @ride.date %></p>
-        <p><%= @ride.time %></p>
+        <p><%= Time.parse(@ride.date).strftime("%a %B %d, %Y") %></p>
+        <p><%= Time.parse(@ride.time).strftime("%-I:%M%p") %></p>
         </div>
     </div>
     <div class="side_by_side">
@@ -38,8 +38,8 @@
     </div>
     <div id="sidebar">
     <p class="ride_detail">Ride Leader</p>
-    <div class="bubble">
-    <p><%= @leader_name.first_name %> <%= @leader_name.last_name %></p>
+    <div class="bubble"><a href="/user/<%= @leader_name.id %>">
+    <p><%= @leader_name.first_name %> <%= @leader_name.last_name %></a></p>
     </div>
     <p class="ride_detail">Skill Level</p>
     <div class="bubble">

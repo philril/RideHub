@@ -8,7 +8,7 @@ $( document ).ready(function() {
       url: '/join_ride',
       data: {ride_id: $id},
     }).done(function(response){
-
+      console.log(response)
       if ($('#attendees').find('li[value='+response['first_name'] + "_" + response['last_name']+']').length > 0)
         {
           $('#join').on('click', function(event){event.preventDefault()})
@@ -20,6 +20,9 @@ $( document ).ready(function() {
             $('#none').replaceWith("<li value="+response['first_name'] + "_" + response['last_name']+"><a href='/user/"+response['id']+"''>" +response['first_name'] + " " + response['last_name']+"</a></li>")
             $('#join').on('click', function(event){event.preventDefault()})
             $('#join').text("You've joined this ride!")
+          } else if (response['first_name'] == undefined && response['last_name'] == undefined) {
+            $('#join').text("You've already joined this ride!")
+            // console.log("N")
           } else {
             $('#attendees:last').append("<ul><li value="+response['first_name'] + "_" + response['last_name']+"><a href='/user/"+response['id']+"''>" +response['first_name'] + " " + response['last_name']+"</a></li></ul>")
             $('#join').on('click', function(event){event.preventDefault()})

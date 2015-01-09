@@ -5,14 +5,15 @@
 
   <div id="all_rides">
 
-    <h2 style="text-align:center; font-size:2.5em">Rides</h2>
+    <h2 style="text-align:center; font-size:2.5em">Upcoming Rides</h2>
     <h4 style="text-align:center">Welcome <%= @user.first_name %>! Browse rides below:</h4>
     <ul>
       <% @all_rides.each do |ride| %>
       <li><p class="ride_detail"><a style="font-size:1.15em" href="/ride/<%= ride.id %>"><%= ride.ride_name %></a></p></li>
-      <p><%= ride.date %>, <%= ride.time %></p>
-      <p><%= ride.city %></p>
-      <p><%= ride.users.length %> riders</p>
+      <div class="ride_info_left"><p><%= Time.parse(ride.date).strftime("%a %B %d, %Y") %><br><br><%= Time.parse(ride.time).strftime("%-I:%M%p")
+       %></p></div>
+      <div class="ride_info_right"><p><%= ride.city %>, <%= ride.state %></p>
+      <p><%= ride.users.length %> riders</p></div>
       <% end %>
     </ul>
   </div>

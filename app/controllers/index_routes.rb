@@ -1,7 +1,15 @@
 get '/' do
   if session[:user_id]
     @user = User.find(session[:user_id])
-    @all_rides = Ride.all.reverse
+
+    #ALL RIDES
+    # @all_rides = Ride.all.reverse
+
+    #RIDES ORDERED BY DATE:
+    @all_rides = Ride.where(["date > ?", Time.now])
+
+    # @all_rides = Ride.all.each{|ride| ride if DateTime.parse(ride.date).strftime("%m/%d/%Y") > DateTime.now.strftime("%m/%d/%Y")}.reverse
+
     erb :map
   else
     erb :index
@@ -10,7 +18,11 @@ end
 
 get '/homeAjax' do
   @ride_location = []
-  Ride.all.each {|ride| @ride_location << [ride.ride_name, ride.latitude, ride.longitude, ride.id, ride.date, ride.time, ride.users.length]}
+
+  Ride.where(["date > ?", Time.now]).each {|ride| @ride_location << [ride.ride_name, ride.latitude, ride.longitude, ride.id, ride.date, ride.time, ride.users.length]}
+
+  # ALL RIDES
+  # Ride.all.each {|ride| @ride_location << [ride.ride_name, ride.latitude, ride.longitude, ride.id, ride.date, ride.time, ride.users.length]}
 
   content_type :json
   {ride_loc: @ride_location}.to_json
@@ -29,14 +41,18 @@ end
 
 get '/new_ride' do
   @all_users = User.all
+
   erb :new_ride
 end
 
 post '/new_ride' do
+  date = DateTime.strptime(params[:date], '%m/%d/%Y')
+  time = Time.parse(params[:time])
+
   @ride = Ride.new(
      ride_name: params[:ride_name],
-     date: params[:date],
-     time: params[:time],
+     date: date,
+     time: time,
      street_number: params[:street_number],
      street_name: params[:route],
      city: params[:locality],
@@ -54,7 +70,6 @@ post '/new_ride' do
     )
   @ride.save
 
-  #Can I put a redirect here, or does redirect not work for async calls?
   redirect '/'
 
   # if @ride.save
@@ -77,6 +92,11 @@ end
 
 get '/user/:id' do
   @this_user = User.find(params[:id])
+
+  @past_rides = @this_user.rides.where(["date < ?", Time.now])
+
+  @future_rides = @this_user.rides.where(["date > ?", Time.now])
+
   erb :user
 end
 
@@ -93,7 +113,6 @@ end
 
 post '/sessions' do
   # sign-in
-
   @user = User.find_by(email: params[:email])
 
   if @user

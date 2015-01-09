@@ -6,6 +6,7 @@ html, body {
   background-size: 100%;
   background-position: center bottom;
   background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
@@ -155,7 +156,7 @@ html, body {
 
 
 #all_rides ul li a:hover {
-  text-shadow: 2px 2px black
+  text-shadow: 3px 3px black
 }
 
 #all_rides ul p {
@@ -284,4 +285,22 @@ html, body {
   margin:70px auto;
   padding:7px;
   border-radius: 10px;
+}
+
+.ride_info_left {
+  float: left;
+  width: 50%;
+/*  border-right: 1px solid gray;
+*/  box-sizing: border-box;
+  display:inline-block;
+}
+
+.ride_info_right {
+/*  float: right;*/
+  width: 50%;
+  height:100%;
+  border-left: 1px solid gray;
+  box-sizing: border-box;
+  display:inline-block;
+
 }

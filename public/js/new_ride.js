@@ -70,11 +70,9 @@ $( document ).ready(function() {
         }
       }).done(function(){
         window.location = '/'
-      })
-      // .fail(function(){
-      //   alert("Error! Please try again.")
-      // });
-
+      }).fail(function(){
+        alert("Error! Please try again.")
+      });
     };
   });
 });
@@ -97,9 +95,7 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
-//?
 geocoder = new google.maps.Geocoder();
-//?
 
 var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 

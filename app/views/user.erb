@@ -4,15 +4,26 @@
     <h1><%= @this_user.first_name %> <%= @this_user.last_name %></h1>
     <h2><%= @this_user.city %>, <%= @this_user.state %></h2>
     <br>
-    <h4><%= @this_user.first_name %>'s rides:</h4>
-    <ul>
-      <% @this_user.rides.each do |ride| %>
-        <li style="text-align:left" >
-          <a href="/ride/<%= ride.id %>"><%= ride.ride_name %></a>
-        </li>
-      <% end %>
-    </ul>
+    <h3><%= @this_user.first_name %>'s rides:</h3>
 
+    <ul style="list-style-type: none;text-decoration:none; padding-left:0px">
+
+<% if @future_rides.length > 0 %>
+    <p class="ride_detail">Future Rides:</p>
+      <% @future_rides.each do |ride| %>
+        <li><a href="/ride/<%= ride.id %>"><%= ride.ride_name %></a></li>
+      <% end %>
+      <br>
+<% end %>
+
+<% if @past_rides.length > 0 %>
+    <p class="ride_detail">Past Rides:</p>
+      <% @past_rides.each do |ride| %>
+        <li><a href="/ride/<%= ride.id %>"><%= ride.ride_name %></a></li>
+      <% end %>
+<% end %>
+
+    </ul>
 
     </div>
   </div>
