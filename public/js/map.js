@@ -3,7 +3,6 @@ var geocoder;
 var pos;
 var locations;
 
-
 function initialize() {
   var mapOptions = {
     zoom: 11
@@ -33,7 +32,6 @@ function initialize() {
   }
   ajaxForCoords()
 }
-
 
 function ajaxForCoords() {
   $.ajax({
@@ -66,10 +64,8 @@ function ajaxForCoords() {
       })(marker, i));
     }
   }
-//GET ADDRESS
 
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
+// Bias the autocomplete object to the user's geographical location, as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -83,7 +79,6 @@ function geolocate() {
     });
   }
 }
-
 
 function handleNoGeolocation(errorFlag) {
   if (errorFlag) {
@@ -101,6 +96,5 @@ function handleNoGeolocation(errorFlag) {
   var infowindow = new google.maps.InfoWindow(options);
   map.setCenter(options.position);
 }
-
 
 // google.maps.event.addDomListener(window, 'load', initialize);
