@@ -6,7 +6,7 @@ get '/' do
     # @all_rides = Ride.all.reverse
 
     #FILTERED BY FUTURE DATE:
-    @all_rides = Ride.where(["date > ?", Time.now])
+    @all_rides = Ride.where(["date > ?", Time.now]).order(:date)
 
     erb :map
   else
@@ -17,7 +17,7 @@ end
 get '/homeAjax' do
   @ride_location = []
 
-  Ride.where(["date > ?", Time.now]).each {|ride| @ride_location << [ride.ride_name, ride.latitude, ride.longitude, ride.id, Time.parse(ride.date).strftime("%a %B %d, %Y"), Time.parse(ride.time).strftime("%-I:%M%p"), ride.users.length]}
+  Ride.where(["date > ?", Time.now]).order(:date).each {|ride| @ride_location << [ride.ride_name, ride.latitude, ride.longitude, ride.id, Time.parse(ride.date).strftime("%a %B %d, %Y"), Time.parse(ride.time).strftime("%-I:%M%p"), ride.users.length]}
 
   content_type :json
   {ride_loc: @ride_location}.to_json
