@@ -1,0 +1,101 @@
+<% if @ride %>
+  <% @ride.errors.full_messages.each do |error| %>
+      <p style="color: red"><%= error %></p>
+  <% end %>
+<% end %>
+
+<body onload="initialize()">
+
+<div class="content_wrapper">
+
+  <div id="map"></div>
+
+  <div id="new_ride_form">
+
+    <p>Enter the address of your meeting place to autocomplete form:</p>
+    <div id="locationField">
+      <input class="field" id="autocomplete" placeholder="Enter the address of your meeting place" onFocus="geolocate()" type="text"></input>
+
+    </div>
+
+    <form id="ride_form">
+      <p>Ride meeting location:</p>
+      <input type="text" class="field" id="street_number" disabled="true" value="<%= @ride.street_number %>" name="street_number"></input>
+      <br>
+      <input class="field" id="route" disabled="true" value="<%= @ride.street_name %>" name="route"></input>
+      <br>
+      <input class="field" id="locality" disabled="true" value="<%= @ride.city %>" name="locality"></input>
+      <br>
+      <input class="field" id="administrative_area_level_1" disabled="true" value="<%= @ride.state %>" name="state"></input>
+      <br>
+      <input class="field" id="postal_code"disabled="true" value="<%= @ride.zip_code %>"  name="postal_code"></input>
+      <br>
+      <input class="field" id="country" disabled="true" value="<%= @ride.country %>" name="country"></input>
+      <br>
+      <textarea style="width:97%;height:100px" value="<%= @ride.location_add_detail %>" name="location_add_detail"></textarea>
+
+      <p>Ride info:</p>
+      <input type="text" class="field" value="<%= @ride.ride_name %>" name="ride_name"></input>
+      <br>
+      <input type="text" id="datepicker" value="<%= Time.parse(@ride.date).strftime("%a %B %d, %Y") %>" name="date">
+      <br>
+      <input type="text" id="timepicker" value="<%= Time.parse(@ride.time).strftime("%-I:%M%p") %>" name="time">
+      <br>
+      <textarea style="width:97%;height:100px" value="<%= @ride.description %>" name="description"></textarea>
+      <br>
+<div id="left_two">
+      <p>Skill level:</p>
+      <select name="skill_level" selected="<%= @ride.skill_level %>">
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+      <br>
+      <p>Ride Leader:</p>
+      <select name="rider_leader_id" selected="<%= @leader_name.first_name %> <%= @leader_name.last_name %>">
+        <% @all_users.each do |user| %>
+          <option value="<%= user.id %>">
+            <%= user.first_name %> <%= user.last_name %>
+          </option>
+        <% end %>
+      </select>
+      <br>
+</div>
+<div id="right_two">
+      <p>Expected Ride Time:</p>
+      <select name="estimated_ride_time" selected="<%= @ride.estimated_ride_time %>">
+        <% i = 1 %>
+        <% while i <= 24 %>
+          <option value="<%= i %>">
+            <%= i %> hours
+          </option>
+          <% i += 1 %>
+        <% end %>
+      </select>
+
+      <br>
+
+      <p>Expected Distance:</p>
+      <select name="expected_dist" selected="<%= @ride.expected_dist %>">
+        <% i = 1 %>
+        <% while i <= 200 %>
+          <option value="<%= i %>">
+            <%= i %> miles
+          </option>
+          <% i += 1 %>
+        <% end %>
+      </select>
+</div>
+      <br>
+      <br>
+      <div style="text-align:center">
+      <input style="font-size:1.25em; margin:15px;"id="submit_button" class="slimField" type="submit" value="Submit"></input>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="/js/new_ride.js"></script>
+
+</body>

@@ -39,7 +39,10 @@
     <div id="sidebar">
     <p class="ride_detail">Ride Leader</p>
     <div class="bubble"><a href="/user/<%= @leader_name.id %>">
-    <p><%= @leader_name.first_name %> <%= @leader_name.last_name %></a></p>
+    <p><%= @leader_name.first_name %> <%= @leader_name.last_name %></a>
+            <% if @leader_name.id == @ride.ride_creator_id %>
+                (ride creator)
+            <% end %></p>
     </div>
     <p class="ride_detail">Skill Level</p>
     <div class="bubble">
@@ -63,7 +66,11 @@
     <% if @riders.length != 0 %>
         <% @riders.each do |rider| %>
         <ul>
-            <li value=<%= rider.first_name %>_<%= rider.last_name %>><a href="/user/<%= rider.id %>"><%= rider.first_name %> <%= rider.last_name %></a></li>
+            <li value=<%= rider.first_name %>_<%= rider.last_name %>><a href="/user/<%= rider.id %>"><%= rider.first_name %> <%= rider.last_name %></a>
+                <% if rider.id == @ride.ride_creator_id %>
+                    (ride creator)
+                <% end %>
+            </li>
         </ul>
         <% end %>
     <% else %>
@@ -75,6 +82,24 @@
     <% end %>
     </div>
     </div>
+
+<!--     <p><%= @ride.ride_creator_id %></p>
+    <p><%= current_user.id %></p> -->
+
+    <% if @ride.ride_creator_id == current_user.id %>
+        <div class="wide">
+
+            <form id="delete_ride" action="/ride/<%= @ride.id %>" method="post">
+              <input name="_method" type="hidden" value="delete" />
+              <input style="color:black" type="submit" value="Delete Ride">
+            </form>
+
+            <a href="/edit_ride/<%= @ride.id %>">
+            <input style="color:black" type="submit" value="Edit Ride">
+            </a>
+
+        </div>
+    <% end %>
 
     <div id="ride_lat" style="display: none;"><%= @ride_lat %></div>
     <div id="ride_long" style="display: none;"><%= @ride_long %></div>

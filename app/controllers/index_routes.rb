@@ -57,6 +57,7 @@ post '/new_ride' do
      location_add_detail: params[:location_add_detail],
      description: params[:description],
      rider_leader_id: params[:rider_leader_id].to_i,
+     ride_creator_id: session[:user_id],
      skill_level: params[:skill_level],
      expected_dist: params[:expected_dist].to_i,
      estimated_ride_time: params[:estimated_ride_time].to_i,
@@ -84,6 +85,63 @@ get '/ride/:id' do
   @ride_id = Ride.find(params[:id]).id
   erb :ride
 end
+
+delete '/ride/:id' do
+  @ride = Ride.find(params[:id])
+  @ride.destroy
+  redirect '/'
+end
+
+#EDIT RIDE
+
+get '/edit_ride/:id' do
+  @ride = Ride.find(params[:id])
+  @riders = Ride.find(params[:id]).users
+  @leader_name = User.find(@ride.rider_leader_id)
+  @ride_lat = Ride.find(params[:id]).latitude
+  @ride_long = Ride.find(params[:id]).longitude
+  @ride_id = Ride.find(params[:id]).id
+  @all_users = User.all
+  erb :edit_ride
+end
+
+post '/edit_ride' do
+  date = DateTime.strptime(params[:date], '%m/%d/%Y')
+  time = Time.parse(params[:time])
+
+  @ride = Ride.new(
+     ride_name: params[:ride_name],
+     date: date,
+     time: time,
+     street_number: params[:street_number],
+     street_name: params[:route],
+     city: params[:locality],
+     state: params[:state],
+     zip_code: params[:postal_code].to_i,
+     country: params[:count],
+     location_add_detail: params[:location_add_detail],
+     description: params[:description],
+     rider_leader_id: params[:rider_leader_id].to_i,
+     ride_creator_id: session[:user_id],
+     skill_level: params[:skill_level],
+     expected_dist: params[:expected_dist].to_i,
+     estimated_ride_time: params[:estimated_ride_time].to_i,
+     latitude: params[:latitude].to_f,
+     longitude: params[:longitude].to_f
+    )
+  @ride.save
+
+  redirect '/'
+
+  # if @ride.save
+  #   redirect '/'
+  # else
+  #   @all_users = User.all
+  #   erb :new_ride
+  # end
+end
+
+#END EDIT RIDE
 
 get '/user/:id' do
   @this_user = User.find(params[:id])
