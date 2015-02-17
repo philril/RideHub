@@ -20,24 +20,24 @@
 
     <form id="ride_form">
       <p>Ride meeting location:</p>
-      <input type="text" class="field" id="street_number" disabled="true" value="<%= @ride.street_number %>" name="street_number"></input>
+      <input type="text" class="field" id="street_number" value="<%= @ride.street_number %>" name="street_number"></input>
       <br>
-      <input class="field" id="route" disabled="true" value="<%= @ride.street_name %>" name="route"></input>
+      <input class="field" id="route" value="<%= @ride.street_name %>" name="route"></input>
       <br>
-      <input class="field" id="locality" disabled="true" value="<%= @ride.city %>" name="locality"></input>
+      <input class="field" id="locality" value="<%= @ride.city %>" name="locality"></input>
       <br>
-      <input class="field" id="administrative_area_level_1" disabled="true" value="<%= @ride.state %>" name="state"></input>
+      <input class="field" id="administrative_area_level_1" value="<%= @ride.state %>" name="state"></input>
       <br>
-      <input class="field" id="postal_code"disabled="true" value="<%= @ride.zip_code %>"  name="postal_code"></input>
+      <input class="field" id="postal_code" value="<%= @ride.zip_code %>" name="postal_code"></input>
       <br>
-      <input class="field" id="country" disabled="true" value="<%= @ride.country %>" name="country"></input>
+      <input class="field" id="country" value="<%= @ride.country %>" name="country"></input>
       <br>
       <textarea style="width:97%;height:100px" value="<%= @ride.location_add_detail %>" name="location_add_detail"><%= @ride.location_add_detail %></textarea>
 
       <p>Ride info:</p>
       <input type="text" class="field" value="<%= @ride.ride_name %>" name="ride_name"></input>
       <br>
-      <input type="text" id="datepicker" value="<%= Time.parse(@ride.date).strftime("%a %B %d, %Y") %>" name="date">
+      <input type="text" id="datepicker" value="<%= Time.parse(@ride.date).strftime("%m/%d/%Y") %>" name="date">
       <br>
       <input type="text" id="timepicker" value="<%= Time.parse(@ride.time).strftime("%-I:%M%p") %>" name="time">
       <br>
@@ -109,17 +109,20 @@
           <% i += 1 %>
         <% end %>
       </select>
+
+      <div id="ride_id" style="display: none;"><%= @ride.id %></div>
+
 </div>
       <br>
       <br>
       <div style="text-align:center">
-      <input style="font-size:1.25em; margin:15px;"id="submit_button" class="slimField" type="submit" value="Submit"></input>
+      <input style="font-size:1.25em; margin:15px;"id="submit_button" class="slimField" type="submit" value="Edit Ride"></input>
       </div>
     </form>
   </div>
 
 </div>
 
-<script type="text/javascript" src="/js/new_ride.js"></script>
+<script type="text/javascript" src="/js/edit_ride.js"></script>
 
 </body>

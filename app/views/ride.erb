@@ -86,17 +86,17 @@
 <!--     <p><%= @ride.ride_creator_id %></p>
     <p><%= current_user.id %></p> -->
 
+    <br>
     <% if @ride.ride_creator_id == current_user.id %>
-        <div class="wide">
-
-            <form id="delete_ride" action="/ride/<%= @ride.id %>" method="post">
+        <div class="wide" style="display:table">
+            <form id="delete_ride" style="display:table-cell" action="/ride/<%= @ride.id %>" method="post">
               <input name="_method" type="hidden" value="delete" />
               <input style="color:black" type="submit" value="Delete Ride">
             </form>
 
-            <a href="/edit_ride/<%= @ride.id %>">
-            <input style="color:black" type="submit" value="Edit Ride">
-            </a>
+            <form id="edit_ride" style="display:table-cell; width: 199px;" action="/edit_ride/<%= @ride.id %>" method="get">
+              <input style="color:black" type="submit" value="Edit Ride">
+            </form>
 
         </div>
     <% end %>

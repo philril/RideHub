@@ -54,7 +54,11 @@
       <p>Ride Leader:</p>
       <select name="rider_leader_id">
         <% @all_users.each do |user| %>
-          <option value="<%= user.id %>">
+          <option value="<%= user.id %>"
+              <% if user.id == @current_user_id %>
+                selected
+              <% end %>
+            >
             <%= user.first_name %> <%= user.last_name %>
           </option>
         <% end %>
