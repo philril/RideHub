@@ -83,11 +83,13 @@
     </div>
     </div>
 
-<!--     <p><%= @ride.ride_creator_id %></p>
-    <p><%= current_user.id %></p> -->
+<!-- <p><%= @ride.ride_creator_id %></p>
+    <p><%= current_user.id %></p>
+    <p><%= current_user %></p>
+    <p><%= session[:user_id] %></p> -->
 
     <br>
-    <% if @ride.ride_creator_id == current_user.id %>
+    <% if @ride.ride_creator_id == session[:user_id] %>
         <div class="wide" style="display:table">
             <form id="delete_ride" style="display:table-cell" action="/ride/<%= @ride.id %>" method="post">
               <input name="_method" type="hidden" value="delete" />
