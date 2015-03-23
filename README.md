@@ -8,8 +8,8 @@ Version 1.0
 
 ##### Ridehub is built using the following technologies:
 - Ruby
-- Sinatra
 - Javascript
+- Sinatra
 - Google Maps API
 - JQuery
 - AJAX
