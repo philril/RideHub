@@ -11,3 +11,5 @@ Version 1.0
 - Sinatra
 - Javascript
 - Google Maps API
+- JQuery
+- AJAX
